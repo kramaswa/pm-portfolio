@@ -26,7 +26,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             alt={project.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-contain group-hover:scale-105 transition-transform duration-500 p-2"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
@@ -79,7 +79,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         </h3>
 
         {/* Description */}
-        <p className="text-zinc-500 text-sm leading-relaxed mb-4 flex-1 line-clamp-3">
+        <p className="text-zinc-500 text-sm leading-relaxed mb-4 flex-1 line-clamp-4">
           {project.description}
         </p>
 

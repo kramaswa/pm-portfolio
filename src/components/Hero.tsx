@@ -24,7 +24,7 @@ export default function Hero({ resumeUrl }: { resumeUrl?: string | null }) {
         {/* Status badge */}
         <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-blue-500/25 bg-blue-500/8 text-blue-300 text-sm font-medium mb-10 animate-fade-in">
           <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse-slow" />
-          Open to new opportunities
+          Open to new roles
         </div>
 
         {/* Name */}

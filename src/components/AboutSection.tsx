@@ -3,7 +3,7 @@ const pillars = [
     icon: "🎯",
     title: "Start with the user",
     description:
-      "I don't trust assumptions — mine or anyone else's. Before writing a spec, I need to have actually talked to the people who'll use it.",
+      "I don't trust assumptions, including my own. Before writing a spec, I need to have actually talked to the people who'll use it.",
   },
   {
     icon: "🚀",
@@ -21,7 +21,7 @@ const pillars = [
     icon: "🤝",
     title: "Works well with builders",
     description:
-      "The best way to align engineers and designers isn't a framework — it's being clear about the problem and genuinely curious about their take.",
+      "The best way to align engineers and designers isn't a framework. It's being clear about the problem and genuinely curious about their take.",
   },
 ];
 
@@ -46,8 +46,8 @@ export default function AboutSection() {
             </h2>
             <p className="text-zinc-400 text-lg leading-relaxed mb-4">
               Most PMs inherit a product. I&apos;d rather build one from
-              scratch. I like the early stage — messy, undefined, full of open
-              questions. That&apos;s when the decisions matter most, and when
+              scratch. I like the early stage: messy, undefined, full of open
+              questions. That&apos;s when the decisions matter most and when
               good judgment beats any process.
             </p>
             <p className="text-zinc-500 leading-relaxed">

@@ -47,7 +47,7 @@ export default function ContactSection() {
             </h2>
             <p className="text-zinc-400 text-lg mb-10 max-w-xl">
               Hiring, collaborating, or just want to swap notes on something
-              you&apos;re building — my inbox is open.
+              you&apos;re building? My inbox is open.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

@@ -44,11 +44,12 @@ export default function ResumeUpload({ currentUrl }: Props) {
       body: JSON.stringify({ key: "resume_url", value: uploadData.url }),
     });
 
+    const saveData = await saveRes.json();
     if (saveRes.ok) {
       setUrl(uploadData.url);
       setSuccess(true);
     } else {
-      setError("Failed to save resume URL.");
+      setError(saveData.error ?? "Failed to save resume URL.");
     }
 
     setUploading(false);

@@ -40,14 +40,12 @@ export async function PUT(request: NextRequest) {
   const { key, value } = await request.json();
   const supabase = createServiceClient();
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("site_settings")
-    .upsert({ key, value, updated_at: new Date().toISOString() })
-    .select()
-    .single();
+    .upsert({ key, value, updated_at: new Date().toISOString() }, { onConflict: "key" });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-  return NextResponse.json(data);
+  return NextResponse.json({ success: true });
 }
