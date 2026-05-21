@@ -21,6 +21,7 @@ export default function ProjectsList({ initialProjects }: Props) {
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState<Project | undefined>();
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [reordering, setReordering] = useState(false);
 
   async function refresh() {
     const res = await fetch("/api/projects");
@@ -42,6 +43,31 @@ export default function ProjectsList({ initialProjects }: Props) {
     setShowForm(false);
     setEditing(undefined);
     refresh();
+  }
+
+  async function moveProject(idx: number, direction: -1 | 1) {
+    const swapIdx = idx + direction;
+    if (swapIdx < 0 || swapIdx >= projects.length) return;
+
+    setReordering(true);
+    const reordered = [...projects];
+    [reordered[idx], reordered[swapIdx]] = [reordered[swapIdx], reordered[idx]];
+
+    // Assign clean sequential order_index values
+    const updates = reordered.map((p, i) => ({ id: p.id, order_index: i * 10 }));
+
+    await Promise.all(
+      updates.map(({ id, order_index }) =>
+        fetch(`/api/projects/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ order_index }),
+        })
+      )
+    );
+
+    await refresh();
+    setReordering(false);
   }
 
   return (
@@ -70,11 +96,35 @@ export default function ProjectsList({ initialProjects }: Props) {
         </div>
       ) : (
         <div className="space-y-3">
-          {projects.map((p) => (
+          {projects.map((p, idx) => (
             <div
               key={p.id}
               className="flex items-center gap-4 p-4 rounded-xl bg-[#14141f] border border-white/5 hover:border-white/8 transition-colors"
             >
+              {/* Reorder buttons */}
+              <div className="flex flex-col gap-0.5 flex-shrink-0">
+                <button
+                  onClick={() => moveProject(idx, -1)}
+                  disabled={idx === 0 || reordering}
+                  className="w-6 h-6 flex items-center justify-center rounded text-zinc-600 hover:text-zinc-300 hover:bg-white/5 transition-all disabled:opacity-20 disabled:cursor-not-allowed"
+                  title="Move up"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => moveProject(idx, 1)}
+                  disabled={idx === projects.length - 1 || reordering}
+                  className="w-6 h-6 flex items-center justify-center rounded text-zinc-600 hover:text-zinc-300 hover:bg-white/5 transition-all disabled:opacity-20 disabled:cursor-not-allowed"
+                  title="Move down"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
+
               {/* Thumbnail */}
               <div className="w-16 h-12 rounded-lg bg-[#080810] overflow-hidden flex-shrink-0 border border-white/5">
                 {p.screenshot_url ? (
