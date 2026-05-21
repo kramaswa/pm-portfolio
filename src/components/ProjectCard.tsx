@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import type { Project } from "@/types";
 
@@ -16,6 +19,8 @@ const STATUS_DOT: Record<Project["status"], string> = {
 };
 
 export default function ProjectCard({ project }: { project: Project }) {
+  const [caseStudyOpen, setCaseStudyOpen] = useState(false);
+
   return (
     <div className="group flex flex-col bg-[#0e0e1a] border border-white/5 rounded-2xl overflow-hidden card-lift h-full">
       {/* Screenshot area */}
@@ -97,29 +102,60 @@ export default function ProjectCard({ project }: { project: Project }) {
           </div>
         )}
 
-        {/* Link */}
-        {project.link && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm text-blue-400 hover:text-blue-300 font-semibold transition-colors group/link mt-auto"
-          >
-            View Project
-            <svg
-              className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        {/* Bottom row: link + case study toggle */}
+        <div className="flex items-center justify-between gap-4 mt-auto flex-wrap">
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-blue-400 hover:text-blue-300 font-semibold transition-colors group/link"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </a>
+              View Project
+              <svg
+                className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+          )}
+
+          {project.long_description && (
+            <button
+              onClick={() => setCaseStudyOpen(!caseStudyOpen)}
+              className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-300 font-medium transition-colors"
+            >
+              {caseStudyOpen ? "Hide" : "Case Study"}
+              <svg
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${caseStudyOpen ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
+        </div>
+
+        {/* Case study expand */}
+        {project.long_description && caseStudyOpen && (
+          <div className="mt-4 pt-4 border-t border-white/5">
+            <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-3">
+              Case Study
+            </p>
+            <p className="text-zinc-400 text-sm leading-relaxed whitespace-pre-line">
+              {project.long_description}
+            </p>
+          </div>
         )}
       </div>
     </div>

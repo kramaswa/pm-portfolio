@@ -164,6 +164,17 @@ export default function ProjectForm({ project, onSave, onCancel }: Props) {
             />
           </Field>
 
+          {/* Case Study */}
+          <Field label="Case Study" hint="Optional — shown as an expandable section on the project card">
+            <textarea
+              value={form.long_description}
+              onChange={(e) => set("long_description", e.target.value)}
+              placeholder={`What problem were you solving?\nWhat did you decide and why?\nWhat tradeoffs did you make?\nWhat was the outcome?`}
+              rows={6}
+              className="w-full bg-[#080810] border border-white/8 rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/60 transition-colors resize-none text-sm leading-relaxed"
+            />
+          </Field>
+
           {/* Tags */}
           <Field label="Tags" hint="Comma-separated, e.g. AI, iOS, Consumer">
             <Input
