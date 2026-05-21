@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createReadClient, createServiceClient } from "@/lib/supabase-server";
 import { jwtVerify } from "jose";
+import { revalidatePath } from "next/cache";
 
 function getSecret() {
   return new TextEncoder().encode(process.env.ADMIN_JWT_SECRET!);
@@ -61,5 +62,6 @@ export async function POST(request: NextRequest) {
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+  revalidatePath("/");
   return NextResponse.json(data, { status: 201 });
 }
