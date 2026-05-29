@@ -36,37 +36,13 @@ export default function Image() {
           }}
         />
 
-        {/* KR badge */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "48px",
-          }}
-        >
-          <div
-            style={{
-              background: "rgba(59,130,246,0.15)",
-              border: "1px solid rgba(59,130,246,0.3)",
-              borderRadius: "12px",
-              padding: "8px 16px",
-              color: "#93c5fd",
-              fontSize: "18px",
-              fontWeight: "700",
-              letterSpacing: "0.05em",
-            }}
-          >
-            KR.
-          </div>
-        </div>
-
         {/* Name */}
         <div
           style={{
-            fontSize: "72px",
+            fontSize: "96px",
             fontWeight: "800",
-            lineHeight: 1.05,
-            marginBottom: "20px",
+            lineHeight: 1.0,
+            marginBottom: "24px",
             display: "flex",
             flexDirection: "column",
           }}
@@ -78,23 +54,22 @@ export default function Image() {
         {/* Title */}
         <div
           style={{
-            fontSize: "28px",
+            fontSize: "36px",
             color: "#71717a",
-            fontWeight: "500",
-            marginBottom: "32px",
+            fontWeight: "600",
+            marginBottom: "40px",
             letterSpacing: "0.02em",
           }}
         >
           Product Manager · 0→1 Builder
         </div>
 
-        {/* Tagline */}
+        {/* URL */}
         <div
           style={{
-            fontSize: "20px",
-            color: "#52525b",
-            maxWidth: "600px",
-            lineHeight: 1.5,
+            fontSize: "24px",
+            color: "#3b82f6",
+            fontWeight: "500",
           }}
         >
           kramaswa.vercel.app
