@@ -8,22 +8,31 @@ const inter = Inter({
   display: "swap",
 });
 
+const description =
+  "Product Manager and 0–1 builder specializing in AI products and consumer apps. See my projects, case studies, and get in touch.";
+
 export const metadata: Metadata = {
   title: "Kishore Ramaswamy — Product Manager",
-  description:
-    "Product Manager and 0–1 builder. Explore my work, projects, and get in touch.",
+  description,
   openGraph: {
     title: "Kishore Ramaswamy — Product Manager",
-    description:
-      "Product Manager and 0–1 builder. Explore my work, projects, and get in touch.",
+    description,
     type: "website",
     url: "https://kramaswa.vercel.app",
     siteName: "Kishore Ramaswamy",
+    images: [
+      {
+        url: "https://kramaswa.vercel.app/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Kishore Ramaswamy — Product Manager",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kishore Ramaswamy — Product Manager",
-    description: "Product Manager and 0–1 builder. Explore my work, projects, and get in touch.",
+    description,
   },
 };
 
