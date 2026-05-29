@@ -5,6 +5,7 @@ export interface Project {
   long_description?: string;
   tags: string[];
   link?: string;
+  github_url?: string;
   screenshot_url?: string;
   status: "Live" | "Beta" | "In Progress" | "Archived";
   featured: boolean;

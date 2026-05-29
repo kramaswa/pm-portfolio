@@ -10,6 +10,7 @@ type FormData = {
   long_description: string;
   tags: string;
   link: string;
+  github_url: string;
   status: Project["status"];
   featured: boolean;
   order_index: number;
@@ -22,6 +23,7 @@ const DEFAULT_FORM: FormData = {
   long_description: "",
   tags: "",
   link: "",
+  github_url: "",
   status: "Live",
   featured: false,
   order_index: 0,
@@ -35,6 +37,7 @@ function projectToForm(p: Project): FormData {
     long_description: p.long_description ?? "",
     tags: p.tags.join(", "),
     link: p.link ?? "",
+    github_url: p.github_url ?? "",
     status: p.status,
     featured: p.featured,
     order_index: p.order_index,
@@ -190,6 +193,16 @@ export default function ProjectForm({ project, onSave, onCancel }: Props) {
               value={form.link}
               onChange={(v) => set("link", v)}
               placeholder="https://..."
+              type="url"
+            />
+          </Field>
+
+          {/* GitHub URL */}
+          <Field label="GitHub URL" hint="Optional">
+            <Input
+              value={form.github_url}
+              onChange={(v) => set("github_url", v)}
+              placeholder="https://github.com/..."
               type="url"
             />
           </Field>

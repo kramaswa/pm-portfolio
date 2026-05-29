@@ -50,6 +50,7 @@ export async function POST(request: NextRequest) {
         long_description: body.long_description ?? null,
         tags: body.tags ?? [],
         link: body.link ?? null,
+        github_url: body.github_url ?? null,
         screenshot_url: body.screenshot_url ?? null,
         status: body.status ?? "Live",
         featured: body.featured ?? false,
